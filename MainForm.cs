@@ -343,7 +343,7 @@ namespace SystemRFID
             Assembly thisAssem = typeof(MainForm).Assembly;
             AssemblyName thisAssemName = thisAssem.GetName();
             Version ver = thisAssemName.Version;
-            String kom = String.Format("Wersja: {0} Nazwa: {1} ", ver, thisAssemName.Name);
+            String kom = String.Format("Wersja {0} Nazwa: {1} ", ver, thisAssemName.Name);
             FormVersion formVersion = new FormVersion();
             FormVersion fv = formVersion;
             fv.Visible = true;
