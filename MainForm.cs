@@ -12,6 +12,7 @@
  * 
  */
  //#define DefTimeReachedEvent
+//#define WYLACZ_SPRAW_TRWALOSCI
 
 using System;
 using System.Text;
@@ -33,45 +34,41 @@ using SystemRFID.formularz_dodaj_nowe_etykiety;
 using SystemRFID.Klasy_IdReader;
 using SystemRFID.formularz_inwentaryzacji;
 using SystemRFID.formularz_wybory_dezaktywacji;
+using SystemRFID.Klasy_IdReader;
 
 
 
 namespace SystemRFID
 {
-    /// <summary>
-    /// Description of MainForm.
-    /// </summary>
- //   public static MainForm 
 
-   
+
     public partial class MainForm : Form
     {
         //
         private static string ClassName = MethodBase.GetCurrentMethod().DeclaringType.ToString();
         private String EPCSelected = "";
         public static Thread serwerAsyn;
-         private static readonly log4net.ILog MainFormlog = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly log4net.ILog MainFormlog = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static Boolean pierwsza_aktywacja = false;
+
         public MainForm()
         {
             AppDomain currentDomain = AppDomain.CurrentDomain;
             currentDomain.UnhandledException += new UnhandledExceptionEventHandler(Handler);
 
-            //
-            // The InitializeComponent() call is required for Windows Forms designer support.
-            //
             InitializeComponent();
-        DAOMsSql.UtworzPulePolaczen();
+            DAOMsSql.UtworzPulePolaczen();
             //wątek do czytania z anten
             Thread thread = new Thread(Serwer_asynchroniczny.StartListening);
             globals.serwerAsyn = thread;
             globals.serwerAsyn.Priority = ThreadPriority.AboveNormal;
             globals.serwerAsyn.Start();
- //           CheckOnClick = true;
+            //           CheckOnClick = true;
         }
 
         public void UstawSymbolePolaczen(Boolean stan) // true - jest połączenie
         {
-            if(stan)
+            if (stan)
             {
                 pictureBoxPolaczenie.BackColor = System.Drawing.Color.Green;
                 labelPolaczenieKomunikat.Text = "IdPos jest połączony";
@@ -99,7 +96,7 @@ namespace SystemRFID
             toolStripStatusLabelRegionTresc.Text = region;
         }
 
- 
+
 
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -114,9 +111,7 @@ namespace SystemRFID
             }
             else
             {
-                DAOMsSql.LoadTableToDataGrid(/*conn, */TabelaGridView,globals.TableName);
-  //              String status=DAOMsSql.ReadStatus(conn, "aaaaa");
-  
+                DAOMsSql.LoadTableToDataGrid(/*conn, */TabelaGridView, globals.TableName);
             }
         }
 
@@ -132,22 +127,22 @@ namespace SystemRFID
                 TabelaGridView.Refresh();
                 TabelaGridView.Update();
                 MainFormlog.Debug("Wychodzę z :" + MethodeName);
-            }           
-            catch(Exception e3)
+            }
+            catch (Exception e3)
             {
-               String km = Utils.DisplayExceptionMessage(e3, MethodeName, ClassName, "Wyjątek w metodzie RefreshGrid");
-               MainFormlog.Debug(km);
+                String km = Utils.DisplayExceptionMessage(e3, MethodeName, ClassName, "Wyjątek w metodzie RefreshGrid");
+                MainFormlog.Debug(km);
                 throw e3;
             }
-}
- 
-//dodanie do bazy etykiet odczytanych z anteny
- 
+        }
+
+        //dodanie do bazy etykiet odczytanych z anteny
+
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             SqlConnection.ClearAllPools();
             Serwer_asynchroniczny.StopServer();
-         }
+        }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -157,7 +152,7 @@ namespace SystemRFID
         /* METDOTY WYWOŁYWANE PRZEZ MENU RECZNA EDYCJA BAZY*/
         private void usuńRekordToolStripMenuItem_Click(object sender, EventArgs e)
         {
- ///           UsunRekord();
+            ///           UsunRekord();
         }
 
         private void UsunRekord()
@@ -204,7 +199,7 @@ namespace SystemRFID
             {
                 MainFormlog.Debug("Wchodzę do :" + MethodeName);
                 FormaSprawdzStatus fss = new FormaSprawdzStatus();
-                ClassReadEPCs crr = new ClassReadEPCs(fss,globals.czas_polaczenia);
+                ClassReadEPCs crr = new ClassReadEPCs(fss, globals.czas_polaczenia);
                 crr.ReadEPCsFromReader();
                 MainFormlog.Debug("Wychodzę z :" + MethodeName);
             }
@@ -219,23 +214,23 @@ namespace SystemRFID
 
         private void toolStripZadenp_Click(object sender, EventArgs e)
         {
-         }
+        }
 
         private void toolStripAntena_Click(object sender, EventArgs e)
         {
-/*
-            toolStripAntena.Checked = true;
-            toolStripZadenp.Checked = false;
-            toolStripIdPos.Checked = false;
- //           toolStripIdReader.Checked = false;
-            Konfig.URZ = Urzadzenie.Antena;
-            KlasaZapiszDoBazyZUrzadzenia.ZapiszDoBazyZUrzadzenia();
-*/
+            /*
+                        toolStripAntena.Checked = true;
+                        toolStripZadenp.Checked = false;
+                        toolStripIdPos.Checked = false;
+             //           toolStripIdReader.Checked = false;
+                        Konfig.URZ = Urzadzenie.Antena;
+                        KlasaZapiszDoBazyZUrzadzenia.ZapiszDoBazyZUrzadzenia();
+            */
         }
 
         private void toolStripIdPos_Click(object sender, EventArgs e)
         {
- 
+
         }
         private void sprawdźStatusWBazieToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -245,15 +240,15 @@ namespace SystemRFID
 
         private void zniszczEtykieteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           string MethodeName = MethodBase.GetCurrentMethod().ToString();
+            string MethodeName = MethodBase.GetCurrentMethod().ToString();
             try
             {
                 MainFormlog.Debug("Wchodzę do :" + MethodeName);
                 FormNiszczenieTagu fss = new FormNiszczenieTagu();
                 ClassReadEPCs crr = new ClassReadEPCs(fss, globals.czas_polaczenia);
- //               fss.UstawWskaznikNaKlaseNiszczenia(crr);
+                //               fss.UstawWskaznikNaKlaseNiszczenia(crr);
                 crr.ReadEPCsFromReader();
-  //              crr.ZniszczTag(crr.)
+                //              crr.ZniszczTag(crr.)
                 MainFormlog.Debug("Wychodzę z :" + MethodeName);
             }
             catch (Exception e4)
@@ -281,12 +276,12 @@ namespace SystemRFID
                 String km = Utils.DisplayExceptionMessage(e4, MethodeName, ClassName, "Wyjątek w metodzie czytania statusu");
                 MainFormlog.Debug(km);
                 MessageBox.Show(km);
-//                throw e4;
+                //                throw e4;
 
             }
         }
 
-        private void ZmienStatusZMenu(Boolean akcja )
+        private void ZmienStatusZMenu(Boolean akcja)
         {
             string MethodeName = MethodBase.GetCurrentMethod().ToString();
             try
@@ -302,7 +297,7 @@ namespace SystemRFID
                 String km = Utils.DisplayExceptionMessage(e4, MethodeName, ClassName, "Wyjątek w metodzie czytania statusu");
                 MainFormlog.Debug(km);
                 MessageBox.Show(km);
-//                throw e4;
+                //                throw e4;
 
             }
         }
@@ -312,12 +307,7 @@ namespace SystemRFID
             string MethodeName = MethodBase.GetCurrentMethod().ToString();
         }
 
- 
- 
-//        private void zwrocProduktToolStripMenuItem_Click(object sender, EventArgs e)
-//        {
 
- //       }
 
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
@@ -328,15 +318,15 @@ namespace SystemRFID
                 fde.Visible = true;
 
             }
-            catch(Exception ef)
+            catch (Exception ef)
             {
 
             }
         }
 
- //       private void dodajNoweEtykietyDoBazyToolStripMenuItem_Click(object sender, EventArgs e)
- //       {
- //       }
+        //       private void dodajNoweEtykietyDoBazyToolStripMenuItem_Click(object sender, EventArgs e)
+        //       {
+        //       }
 
         private void WyswietlWersjeToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -359,16 +349,35 @@ namespace SystemRFID
         {
             try
             {
+
                 if (!KlasaPP.StanPolaczenia)
                 {
                     InicjujIdPos ifd = new InicjujIdPos();
-//                    KlasaPolaczenie klp = new KlasaPolaczenie();
-//                    klp.Polacz();
 
                 }
-
+                Thread.Sleep(200);
+#if !WYLACZ_SPRAW_TRWALOSCI
+                //sprawdzemie,czy jest w stanie trwałym
+                CzytajStandalomeMode ccsm = new CzytajStandalomeMode();
+                String ww=ccsm.CzytajStand();
+                if (ccsm.CzytajStandaloneStatus())
+                {
+                    if (MessageBox.Show("IdPos jest w trybie aktywcji/dezaktywaci trwałej\n\r" + "Kontynuować ?",
+                     "Informacja",
+                        MessageBoxButtons.YesNo,
+                     MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+                        FormDezaktywacja.UstawStanTrwala(true);
+                        ZacznijAktywacjeDezaktywacje();
+                    }
+                    else
+                    {
+                        KlasaAktDez.ResetWithRecovery();
+                    }
+                }
+#endif
             }
-            catch(IdReaderException en)
+            catch (IdReaderException en)
             {
                 MessageBox.Show(en.Message);
             }
@@ -402,7 +411,7 @@ namespace SystemRFID
             {
                 trackBarReset();
             }
-       }
+        }
 
         private void ZakonczMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -419,13 +428,13 @@ namespace SystemRFID
             ZmienStatusZMenu(false);
         }
 
-        private void deaktywacjaToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void ZacznijAktywacjeDezaktywacje()
         {
             string MethodeName = MethodBase.GetCurrentMethod().ToString();
-           if (MessageBox.Show("Aktywacja/dezaktywacja dotyczy wszystkich tagów znajdujących się w zasięgu IdPos\n\r"+"Kontynuować ?",
-                                "Ostrzeżenie", 
-                                MessageBoxButtons.YesNo, 
-                                MessageBoxIcon.Warning)==DialogResult.No)
+            if (MessageBox.Show("Aktywacja/dezaktywacja dotyczy wszystkich tagów znajdujących się w zasięgu IdPos\n\r" + "Kontynuować ?",
+                                 "Ostrzeżenie",
+                                 MessageBoxButtons.YesNo,
+                                 MessageBoxIcon.Warning) == DialogResult.No)
             {
                 return;
             }
@@ -433,11 +442,6 @@ namespace SystemRFID
             {
                 FormDezaktywacja fdz = new FormDezaktywacja();
                 fdz.Visible = true;
- //               if (fdz.ShowDialog() == DialogResult.OK)
- //               {
- //                   DeactivationMode dmf = fdz.CzytajMode();
-//                    KlasaPP.Sreader.StartDeactivationInStandaloneMode(dmf, DeactivationPasswordMethod.NoPassword);
-//                }
 
             }
             catch (Exception ed)
@@ -450,6 +454,34 @@ namespace SystemRFID
 
         }
 
+        private void deaktywacjaToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            ZacznijAktywacjeDezaktywacje();
+/*
+            string MethodeName = MethodBase.GetCurrentMethod().ToString();
+            if (MessageBox.Show("Aktywacja/dezaktywacja dotyczy wszystkich tagów znajdujących się w zasięgu IdPos\n\r" + "Kontynuować ?",
+                                 "Ostrzeżenie",
+                                 MessageBoxButtons.YesNo,
+                                 MessageBoxIcon.Warning) == DialogResult.No)
+            {
+                return;
+            }
+            try
+            {
+                FormDezaktywacja fdz = new FormDezaktywacja();
+                fdz.Visible = true;
+
+            }
+            catch (Exception ed)
+            {
+                String km = Utils.DisplayExceptionMessage(ed, MethodeName, ClassName, "Wyjątek w metodzie aktywacji/dezaktywacji etykiety");
+                MainFormlog.Debug(km);
+                MessageBox.Show(km);
+
+            }
+ */
+        }
+
         private void dodajNoweEtykietyDoBazyToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             FormDodajNoweEtykiety fne = new FormDodajNoweEtykiety();
@@ -458,7 +490,7 @@ namespace SystemRFID
 
         private void toolStripAntena_Click_1(object sender, EventArgs e)
         {
-             toolStripAntena.Checked = true;
+            toolStripAntena.Checked = true;
             toolStripZadenp.Checked = false;
             toolStripIdPos.Checked = false;
             //           toolStripIdReader.Checked = false;
@@ -493,9 +525,9 @@ namespace SystemRFID
 
         private void ciagłaToolStripMenuItem_Click(object sender, EventArgs e)
         {
- //           ZapiszDoBazyInwentaryzacje zdi = new ZapiszDoBazyInwentaryzacje();
-//            FormaInwentaryzacji fjc = new FormaInwentaryzacji();
-//            fjc.Visible = true;
+            //           ZapiszDoBazyInwentaryzacje zdi = new ZapiszDoBazyInwentaryzacje();
+            //            FormaInwentaryzacji fjc = new FormaInwentaryzacji();
+            //            fjc.Visible = true;
         }
 
         private void jednorazowaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -603,7 +635,7 @@ namespace SystemRFID
                 String ww = csdl.CzytajStand();
                 MessageBox.Show(mes + ww);
             }
-            catch(NotConnectedException em)
+            catch (NotConnectedException em)
             {
                 MessageBox.Show(em.Message);
             }
@@ -612,9 +644,9 @@ namespace SystemRFID
         private void Handler(object sender, UnhandledExceptionEventArgs args)
         {
             Exception e = (Exception)args.ExceptionObject;
-            MainFormlog.Debug("Niebsłużony wyjątek :"+e.Message);
+            MainFormlog.Debug("Niebsłużony wyjątek :" + e.Message);
             MainFormlog.Debug("Źródło wyjątku :" + e.Source);
-//            MainFormlog.Debug("Zakończenie progamu : {0}", args.IsTerminating.ToString());
+            //            MainFormlog.Debug("Zakończenie progamu : {0}", args.IsTerminating.ToString());
 
 
 
@@ -625,7 +657,7 @@ namespace SystemRFID
 
         private void inwentaryzacjaToolStripMenuItem_Click(object sender, EventArgs e)
         {
- 
+
             try
             {
                 FormaInwentaryzacji antn = new FormaInwentaryzacji();
@@ -663,7 +695,7 @@ namespace SystemRFID
 
         private void trackBarReset()
         {
-            if (KlasaPP.Sreader!=null)
+            if (KlasaPP.Sreader != null)
             {
                 KlasaPP.Sreader.Disconnect();
                 KlasaPP.Sreader = null;
@@ -671,6 +703,5 @@ namespace SystemRFID
             trackBarMoc.Value = 0;
             trackBarMoc.Enabled = false;
         }
-
     }
 }
