@@ -368,6 +368,10 @@ namespace SystemRFID
                      MessageBoxIcon.Information) == DialogResult.Yes)
                     {
                         FormDezaktywacja.UstawStanTrwala(true);
+                        if (ccsm.CzytajAdditionalInfo()==(byte)0)
+                        {
+                            FormDezaktywacja.UstawStanDeaktywacji(false);
+                        }
                         ZacznijAktywacjeDezaktywacje();
                     }
                     else
