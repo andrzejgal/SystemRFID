@@ -18,36 +18,28 @@ namespace SystemRFID
         public String opis_bledu;
     }
 
-    public struct wynik_czytania_bankow
+    public struct WynikiOpracjiCzytaniaZapisuBankow
     {
-        public byte[] EPCbin;                       //ws1
-        public short Count;     
-        public byte[] Data;
-        public byte EPCLength;                      //ws2
-        public EPCGen2MemoryBank mb;                //ws3
-        public short Offset;                        //ws4
-        public EPCGen2TagAccessStatus status;       //ws5
-        public String HexEPC;                       //ws6
-        public Boolean zakonczenie;                 //ws7
+        public byte[] EPCbin;                       //ws1 odczyt i zapis
+        public byte EPCLength;                      //ws2 odczyt i zapis
+        public EPCGen2MemoryBank mb;                //ws3 odczyt i zapis
+        public short Offset;                        //ws4 odczyt i zapis
+        public EPCGen2TagAccessStatus status;       //ws5 odczyt i zapis
+        public String HexEPC;                       //ws6 odczyt i zapis
+        public Boolean zakonczenie;                 //ws7 odczyt i zapis
+//odczyt
+        public short OdCount;
+        public byte[] OdData;
+//zapis
+        public short ZaLength;
     }
 
-    public struct wynik_zapisu_do_banku
-    {
-        public byte[] EPCbin;                    //ws1
-        public byte EPCLength;                  //ws2
-        public short Length;
-        public EPCGen2MemoryBank mb;            //ws3
-        public short Offset;                    //ws4
-        public EPCGen2TagAccessStatus status;   //ws5
-        public String HexEPC;                   //ws6
-        public Boolean zakonczenie;             //ws7
-    }
 
     public class WerbalizujWspolne : WerbalizacjaWynikow
     {
-        public static wynik_czytania_bankow operacje_na_bankach;
+        public static WynikiOpracjiCzytaniaZapisuBankow operacje_na_bankach;
    
-        static void UstawStruktureCzytania(wynik_czytania_bankow aCzyt_banki)
+        static void UstawStruktureCzytania(WynikiOpracjiCzytaniaZapisuBankow aCzyt_banki)
         {
             operacje_na_bankach = aCzyt_banki;
         }
@@ -57,6 +49,57 @@ namespace SystemRFID
             return Encoding.UTF8.GetString(operacje_na_bankach.EPCbin);
         }
 
+        public static String CzytajEPCLength()
+        {
+            return operacje_na_bankach.EPCLength.ToString();
+        }
+
+        public static String CzytajNazweBanku()
+        {
+            return NazwaBankuPamieci(operacje_na_bankach.mb);
+        }
+
+        public static StatusOperacji CzytajStatus()
+        {
+            return NazwaStatusu(operacje_na_bankach.status);
+        }
+
+        public static String CzytajOffset()
+        {
+            return operacje_na_bankach.Offset.ToString();
+        }
+
+        public static String CzytajHexEPC()
+        {
+            return operacje_na_bankach.HexEPC;
+        }
+
+        public Boolean CzytajZakonczenie()
+        {
+            return operacje_na_bankach.zakonczenie;
+        }
+
+    }
+
+    public class WerbalizujwynikiOdczytuBankow: WerbalizujWspolne
+    {
+        public String CzytajCount()
+        {
+            return operacje_na_bankach.OdData.ToString();
+        }
+
+        public String CzytajData()
+        {
+            return Encoding.UTF8.GetString(operacje_na_bankach.OdData);
+        }
+    }
+
+    public class WerbalizujWynikiZapisuBankow : WerbalizujWspolne
+    {
+        public String CzytajLength()
+        {
+            return operacje_na_bankach.ZaLength.ToString();
+        }
     }
 
 
@@ -204,37 +247,9 @@ namespace SystemRFID
         }
     }
 
-    public class WynikiCzytaniaBankow: WerbalizacjaWynikow
-    {
-        public static wynik_czytania_bankow wCzyt_banki;
-
-        static void UstawStruktureCzytania(wynik_czytania_bankow aCzyt_banki)
-        {
-            wCzyt_banki = aCzyt_banki;
-        }
-
-        public static  String CzytajNazweBanku()
-        {
-            return NazwaBankuPamieci(wCzyt_banki.mb);
-        }
-
-        public static StatusOperacji  CzytajStatus()
-        {
-            return NazwaStatusu(wCzyt_banki.status);
-        }
-
-        public static String EPCbin()
-        {
-            return 
-        }
-
-    }
+ }
 
 
  
 
 
-    //   class Struktury_wynikow_operacji
-    //    {
-    //    }
-}
