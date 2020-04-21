@@ -707,5 +707,10 @@ namespace SystemRFID
             trackBarMoc.Value = 0;
             trackBarMoc.Enabled = false;
         }
+
+        private void czytajBankEPCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+//            if ()
+        }
     }
 }

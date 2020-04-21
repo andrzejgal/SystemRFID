@@ -92,6 +92,8 @@ namespace SystemRFID
             this.labelzero = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.labelRegulacjaMocy = new System.Windows.Forms.Label();
+            this.testyFunkciToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.czytajBankEPCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.TabelaGridView)).BeginInit();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPolaczenie)).BeginInit();
@@ -162,7 +164,8 @@ namespace SystemRFID
             this.bazaToolStripMenuItem,
             this.toolStripWybierzUrzadzenie,
             this.toolStripMenuItem1,
-            this.WyswietlWersjeToolStripMenuItem});
+            this.WyswietlWersjeToolStripMenuItem,
+            this.testyFunkciToolStripMenuItem});
             resources.ApplyResources(this.menuStrip2, "menuStrip2");
             this.menuStrip2.Name = "menuStrip2";
             // 
@@ -433,6 +436,19 @@ namespace SystemRFID
             resources.ApplyResources(this.labelRegulacjaMocy, "labelRegulacjaMocy");
             this.labelRegulacjaMocy.Name = "labelRegulacjaMocy";
             // 
+            // testyFunkciToolStripMenuItem
+            // 
+            this.testyFunkciToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.czytajBankEPCToolStripMenuItem});
+            this.testyFunkciToolStripMenuItem.Name = "testyFunkciToolStripMenuItem";
+            resources.ApplyResources(this.testyFunkciToolStripMenuItem, "testyFunkciToolStripMenuItem");
+            // 
+            // czytajBankEPCToolStripMenuItem
+            // 
+            this.czytajBankEPCToolStripMenuItem.Name = "czytajBankEPCToolStripMenuItem";
+            resources.ApplyResources(this.czytajBankEPCToolStripMenuItem, "czytajBankEPCToolStripMenuItem");
+            this.czytajBankEPCToolStripMenuItem.Click += new System.EventHandler(this.czytajBankEPCToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -453,7 +469,6 @@ namespace SystemRFID
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-//            this.Activated += new System.EventHandler(this.MainForm_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.TabelaGridView)).EndInit();
@@ -517,5 +532,7 @@ namespace SystemRFID
         private System.Windows.Forms.Label labelzero;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label labelRegulacjaMocy;
+        private System.Windows.Forms.ToolStripMenuItem testyFunkciToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem czytajBankEPCToolStripMenuItem;
     }
 }
