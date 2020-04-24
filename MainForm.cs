@@ -708,9 +708,10 @@ namespace SystemRFID
             trackBarMoc.Enabled = false;
         }
 
-        private void czytajBankEPCToolStripMenuItem_Click(object sender, EventArgs e)
+        private void czytajSzczegolyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-//            if ()
+            FormSzczegolyTaga fst = new FormSzczegolyTaga();
+            fst.Visible = true;
         }
     }
 }

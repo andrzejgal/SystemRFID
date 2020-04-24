@@ -74,6 +74,8 @@ namespace SystemRFID
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.WyswietlWersjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testyFunkciToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.czytajSzczegolyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBoxPolaczenie = new System.Windows.Forms.PictureBox();
             this.labelPolaczenieKomunikat = new System.Windows.Forms.Label();
             this.buttonPolacz = new System.Windows.Forms.Button();
@@ -92,8 +94,6 @@ namespace SystemRFID
             this.labelzero = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.labelRegulacjaMocy = new System.Windows.Forms.Label();
-            this.testyFunkciToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.czytajBankEPCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.TabelaGridView)).BeginInit();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPolaczenie)).BeginInit();
@@ -323,6 +323,19 @@ namespace SystemRFID
             resources.ApplyResources(this.WyswietlWersjeToolStripMenuItem, "WyswietlWersjeToolStripMenuItem");
             this.WyswietlWersjeToolStripMenuItem.Click += new System.EventHandler(this.WyswietlWersjeToolStripMenuItem_Click_1);
             // 
+            // testyFunkciToolStripMenuItem
+            // 
+            this.testyFunkciToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.czytajSzczegolyToolStripMenuItem});
+            this.testyFunkciToolStripMenuItem.Name = "testyFunkciToolStripMenuItem";
+            resources.ApplyResources(this.testyFunkciToolStripMenuItem, "testyFunkciToolStripMenuItem");
+            // 
+            // czytajSzczegolyToolStripMenuItem
+            // 
+            this.czytajSzczegolyToolStripMenuItem.Name = "czytajSzczegolyToolStripMenuItem";
+            resources.ApplyResources(this.czytajSzczegolyToolStripMenuItem, "czytajSzczegolyToolStripMenuItem");
+            this.czytajSzczegolyToolStripMenuItem.Click += new System.EventHandler(this.czytajSzczegolyToolStripMenuItem_Click);
+            // 
             // pictureBoxPolaczenie
             // 
             this.pictureBoxPolaczenie.BackColor = System.Drawing.Color.Red;
@@ -436,19 +449,6 @@ namespace SystemRFID
             resources.ApplyResources(this.labelRegulacjaMocy, "labelRegulacjaMocy");
             this.labelRegulacjaMocy.Name = "labelRegulacjaMocy";
             // 
-            // testyFunkciToolStripMenuItem
-            // 
-            this.testyFunkciToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.czytajBankEPCToolStripMenuItem});
-            this.testyFunkciToolStripMenuItem.Name = "testyFunkciToolStripMenuItem";
-            resources.ApplyResources(this.testyFunkciToolStripMenuItem, "testyFunkciToolStripMenuItem");
-            // 
-            // czytajBankEPCToolStripMenuItem
-            // 
-            this.czytajBankEPCToolStripMenuItem.Name = "czytajBankEPCToolStripMenuItem";
-            resources.ApplyResources(this.czytajBankEPCToolStripMenuItem, "czytajBankEPCToolStripMenuItem");
-            this.czytajBankEPCToolStripMenuItem.Click += new System.EventHandler(this.czytajBankEPCToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -533,6 +533,6 @@ namespace SystemRFID
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label labelRegulacjaMocy;
         private System.Windows.Forms.ToolStripMenuItem testyFunkciToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem czytajBankEPCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem czytajSzczegolyToolStripMenuItem;
     }
 }
