@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Linq;
 using System.Text;
 using System;
@@ -113,6 +114,32 @@ namespace SystemRFID
             MessageBox.Show("Wystąpił poważny błąd systemu i system zostanie zamknięty");
             Application.Exit();
         }
+
+        static public string DisplayExceptionMessage(string methodname, string filename, string simplemessage)
+        {
+            string outt = null;
+            StringBuilder SB = new StringBuilder();
+            //#if DEBUG
+            SB.Append("Nazwa metody :");
+            SB.Append(methodname);
+            SB.Append("\n\r");
+            SB.Append("Nazwa klasy :");
+            SB.Append(filename);
+            SB.Append("\n\r");
+            SB.Append(simplemessage);
+            outt = SB.ToString();
+
+            //#else
+            //
+            //            SB.Append("Nazwa klasy :");
+            //            SB.Append(filename);
+            //            SB.Append("\n\r");
+            //            SB.Append(simplemessage);
+            //            outt = SB.ToString();
+            //#endif
+            return outt;
+        }
+
 
         static public string DisplayExceptionMessage(Exception e, string methodname, string filename, string simplemessage)
         {
