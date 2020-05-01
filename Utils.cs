@@ -11,6 +11,7 @@ namespace SystemRFID
 {
     class Utils
     {
+        public static readonly String[] LiczbyHex = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" };
 
         static public Boolean isHexChar(char c)
         {
@@ -18,6 +19,39 @@ namespace SystemRFID
                    (c >= 'a') && (c <= 'f') ||
                    (c >= 'A') && (c <= 'F');
         }
+
+        static public byte[] StringHexNaByteArray(String hex_string)
+        {
+            byte dlug = (byte)hex_string.Length;
+            byte[] nb = new byte[dlug];
+            for (byte n=0;n<dlug;n++)
+            {
+                char c = hex_string[n];
+                nb[n] = ZnajdzIndeks(c);
+            }
+            return nb;
+        }
+
+        static public byte ZnajdzIndeks(char hex)
+        {
+            string MethodeName = MethodBase.GetCurrentMethod().ToString();
+            byte wyj = 0xFF;
+            String s1 = null;
+            char c1;
+            for (byte n = 0; n < 16; n++)
+            {
+                s1 = LiczbyHex[n];
+                char.TryParse(s1, out c1);
+                if (c1 == hex)
+                {
+                    wyj = n;
+                    break;
+                }
+            }
+            Debug.Assert(wyj < 0xFF, "Błąd przetwarzania znaku na byte");
+            return wyj;
+        }
+
 
 
         static public string ConvertIntToSoldUnsold(int wej)

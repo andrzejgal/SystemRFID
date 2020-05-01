@@ -419,6 +419,10 @@ namespace SystemRFID
 
         private void ZakonczMenuItem_Click_1(object sender, EventArgs e)
         {
+            if (KlasaPP.Sreader != null)
+            {
+                trackBarReset();
+            }
             Application.Exit();
         }
 
