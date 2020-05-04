@@ -448,3 +448,13 @@ Byæ mo¿e zamiast struktury trzeba zastosowaæ klasê statyczn¹.
 17:29 30.04.2020 Wersja 1.0.7425.31441 dom
 Zacz¹³em zapis EPC do taga.
 
+18:30 01.05.2020 Wersja 1.0.7426.33414 dom
+Chyba programowanie taga jest na dobrej drodze. Nie mozna by³o przetestowaæ programowania
+na etykietach i tagach, które mam, poniewa¿ s¹ zablokowane. Na programie Nedap te¿ siê nie uda³o.
+
+16:26 03.05.2020 Wersja 1.0.7428.29284 dom
+Do wszystkich klas dopisalem wiersz odczytuj¹cy nazwê klasy.
+
+14:42 04.05.2020 Wersja 1.0.7429.26435 dom
+Do wszystkich (prawie) dopisalem wiersz odczytuj¹cy nazwê metody.
+

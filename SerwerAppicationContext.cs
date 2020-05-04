@@ -1,5 +1,6 @@
 ﻿//#define ZEZWOLENIE
 using System;
+using System.Reflection;
 using System.Windows.Forms;
 using System.ComponentModel;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace SystemRFID
 {
     public class SerwerApplicationContext : ApplicationContext
     {
+        private static string ClassName = MethodBase.GetCurrentMethod().DeclaringType.ToString();
         private MainForm _mainform;
         private static readonly log4net.ILog SerwerContextlog = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 

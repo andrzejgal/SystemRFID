@@ -6,15 +6,6 @@ using System.Threading.Tasks;
 
 namespace SystemRFID
 {
- //   public class Typy
- //   {
-        enum TypSerwera { SqlServer, MySqlServer };
-        public enum RodzajDzialania { Sprzedaz, Przyjęcie,JedenEPC };
-        public enum RodzajZrodla { IdPos,Antena };
-        public enum JakWczytywacEPC {OknoPotemOdczyt, OknoIOdczyt, BezpDoBazy };
+         enum TypSerwera { SqlServer, MySqlServer };
         public enum Urzadzenie { Zadne, Antena, IdPos, IdReader };
-        public enum RodzajGenNumerowSeryjnych { LiczbyLosowe,LiczbySekwencyjne,NumerzTIG};
-        public enum RodzajAktywacjiDezaltywacji {Samodzielny, Niesamodzielny };
-    //OknoPotemOdczyt 
-    //   }
 }

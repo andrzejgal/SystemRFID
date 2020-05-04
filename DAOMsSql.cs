@@ -27,6 +27,7 @@ namespace SystemRFID
         //       private static SqlConnection Nconn = new SqlConnection(CreateConnectionString());
         public static SqlConnection Nconn;
         const int DuplicationError = -2146232060;
+
         static public String CreateConnectionString()
         {
             string MethodeName = MethodBase.GetCurrentMethod().ToString();
@@ -56,11 +57,13 @@ namespace SystemRFID
 
         static public void UsunPulePolaczen()
         {
+            string MethodeName = MethodBase.GetCurrentMethod().ToString();
             SqlConnection.ClearAllPools();
        }
 
         static public void UtworzPulePolaczen()
         {
+            string MethodeName = MethodBase.GetCurrentMethod().ToString();
             try
             {
 
@@ -78,8 +81,7 @@ namespace SystemRFID
 
         static public bool LoadTableToDataGrid(DataGridView grid,String ITableName)
         {
-            
-                      bool wyn = true;
+           bool wyn = true;
                       String st = null;
                       string queryString = "Select * from "+ITableName;
                       string MethodeName = MethodBase.GetCurrentMethod().ToString();
@@ -156,14 +158,13 @@ namespace SystemRFID
 
         static public String ReadStatus(String IEPC,String ITableName,SqlConnection Nconn)
         {
-
-             String st = null;
+            string MethodeName = MethodBase.GetCurrentMethod().ToString();
+            String st = null;
             Object obj = new object();
             Stopwatch a1 = new Stopwatch();
              lock (obj)
              {
                 string queryString = "Select * from "+ITableName+" WHERE EPC="+"'"+IEPC+"'";
-                string MethodeName = MethodBase.GetCurrentMethod().ToString();
                  try
                 {
                     SqlCommand command = new SqlCommand(queryString, Nconn);
@@ -268,12 +269,12 @@ namespace SystemRFID
 */
         static public String ReadStatus(String IEPC, String ITableName)
         {
+            string MethodeName = MethodBase.GetCurrentMethod().ToString();
             String st = null;
             Object obj = new object();
             lock (obj)
             {
                 string queryString = "Select * from " + ITableName + " WHERE EPC=" + "'" + IEPC + "'";
-                string MethodeName = MethodBase.GetCurrentMethod().ToString();
                 //               DAOMlog.Debug("przed otwarciem Nconn");
                 SqlConnection Nconn = new SqlConnection(CreateConnectionString());
                 //               DAOMlog.Debug("po zamknięciu Nconn");

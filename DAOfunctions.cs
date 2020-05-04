@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Data;
 using System.Windows.Forms;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace SystemRFID
 {
     public class DAOfunctions
     {
+        private static string ClassName = MethodBase.GetCurrentMethod().DeclaringType.ToString();
         private MySqlConnection MyConn;
         private String server;
         private String database_name;
@@ -34,7 +36,8 @@ namespace SystemRFID
 
         public bool OpenConnection()
         {
-             ConnectionString = "SERVER=" + server + ";" + "DATABASE=" +
+            string MethodeName = MethodBase.GetCurrentMethod().ToString();
+            ConnectionString = "SERVER=" + server + ";" + "DATABASE=" +
             database_name + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
             MyConn = new MySqlConnection(ConnectionString);
             Debug.Assert(MyConn != null);
@@ -53,6 +56,7 @@ namespace SystemRFID
 
         public bool CloseConnection()
         {
+            string MethodeName = MethodBase.GetCurrentMethod().ToString();
             try
             {
                 MyConn.Close();
@@ -67,6 +71,7 @@ namespace SystemRFID
 
         public void LoadDataBaseTableToGrid(DataGridView VD)
         {
+            string MethodeName = MethodBase.GetCurrentMethod().ToString();
             string st;
             if (this.OpenConnection())
             {
