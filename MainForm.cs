@@ -35,6 +35,7 @@ using SystemRFID.Klasy_IdReader;
 using SystemRFID.formularz_inwentaryzacji;
 using SystemRFID.formularz_wybory_dezaktywacji;
 using SystemRFID.Klasy_IdReader;
+using SystemRFID.Konfiguracja;
 
 
 
@@ -716,6 +717,12 @@ namespace SystemRFID
         {
             FormSzczegolyTaga fst = new FormSzczegolyTaga();
             fst.Visible = true;
+        }
+
+        private void nfiguracjaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormKonfiguracja fkg = new FormKonfiguracja();
+            fkg.Visible = true;
         }
     }
 }

@@ -458,3 +458,6 @@ Do wszystkich klas dopisalem wiersz odczytuj¹cy nazwê klasy.
 14:42 04.05.2020 Wersja 1.0.7429.26435 dom
 Do wszystkich (prawie) dopisalem wiersz odczytuj¹cy nazwê metody.
 
+08:22 09.05.2020 Wersja 1.0.7433.38587 dom
+Zaczynam robiæ konfiguracjê. Udalo mi siê zmieniæ level programowo.
+

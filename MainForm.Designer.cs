@@ -94,6 +94,7 @@ namespace SystemRFID
             this.labelzero = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.labelRegulacjaMocy = new System.Windows.Forms.Label();
+            this.nfiguracjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.TabelaGridView)).BeginInit();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPolaczenie)).BeginInit();
@@ -165,7 +166,8 @@ namespace SystemRFID
             this.toolStripWybierzUrzadzenie,
             this.toolStripMenuItem1,
             this.WyswietlWersjeToolStripMenuItem,
-            this.testyFunkciToolStripMenuItem});
+            this.testyFunkciToolStripMenuItem,
+            this.nfiguracjaToolStripMenuItem});
             resources.ApplyResources(this.menuStrip2, "menuStrip2");
             this.menuStrip2.Name = "menuStrip2";
             // 
@@ -449,6 +451,12 @@ namespace SystemRFID
             resources.ApplyResources(this.labelRegulacjaMocy, "labelRegulacjaMocy");
             this.labelRegulacjaMocy.Name = "labelRegulacjaMocy";
             // 
+            // nfiguracjaToolStripMenuItem
+            // 
+            this.nfiguracjaToolStripMenuItem.Name = "nfiguracjaToolStripMenuItem";
+            resources.ApplyResources(this.nfiguracjaToolStripMenuItem, "nfiguracjaToolStripMenuItem");
+            this.nfiguracjaToolStripMenuItem.Click += new System.EventHandler(this.nfiguracjaToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -534,5 +542,6 @@ namespace SystemRFID
         private System.Windows.Forms.Label labelRegulacjaMocy;
         private System.Windows.Forms.ToolStripMenuItem testyFunkciToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem czytajSzczegolyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nfiguracjaToolStripMenuItem;
     }
 }
