@@ -461,3 +461,17 @@ Do wszystkich (prawie) dopisalem wiersz odczytuj¹cy nazwê metody.
 08:22 09.05.2020 Wersja 1.0.7433.38587 dom
 Zaczynam robiæ konfiguracjê. Udalo mi siê zmieniæ level programowo.
 
+21:48 28.05.2020 Wersja 1.0.7453.39316 dom
+Zrobi³em podstawow¹ konfiguracjê i konfiguracjê loggerów.
+Próbujê wszystkie konfiguracje zapisaæ do pliku xml.
+
+10:42 01,06.2020 Wersja 1.0.7457.19279 dom
+Konfiguracja musi mieæ ustawienie wartoœci domyœlnych.
+Poziom logowania i filtry logerów musz¹ byæ zapisane do pliku konfiguracyjnego log4net.
+
+20:02 03.06.2020 Wersja 1.0.7459.36038 dom
+Zapisuje nowe i domyslne ustawienia do pliku log4net.config
+
+18:02 05.06.2020 Wersja 1.0.7461.30241 dom
+Mogê ju¿ zmieniaæ poziom logowania oraz poziomy filtrowania.
+

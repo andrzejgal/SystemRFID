@@ -76,6 +76,7 @@ namespace SystemRFID
             this.WyswietlWersjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testyFunkciToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.czytajSzczegolyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nfiguracjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBoxPolaczenie = new System.Windows.Forms.PictureBox();
             this.labelPolaczenieKomunikat = new System.Windows.Forms.Label();
             this.buttonPolacz = new System.Windows.Forms.Button();
@@ -94,7 +95,6 @@ namespace SystemRFID
             this.labelzero = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.labelRegulacjaMocy = new System.Windows.Forms.Label();
-            this.nfiguracjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.TabelaGridView)).BeginInit();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPolaczenie)).BeginInit();
@@ -338,6 +338,12 @@ namespace SystemRFID
             resources.ApplyResources(this.czytajSzczegolyToolStripMenuItem, "czytajSzczegolyToolStripMenuItem");
             this.czytajSzczegolyToolStripMenuItem.Click += new System.EventHandler(this.czytajSzczegolyToolStripMenuItem_Click);
             // 
+            // nfiguracjaToolStripMenuItem
+            // 
+            this.nfiguracjaToolStripMenuItem.Name = "nfiguracjaToolStripMenuItem";
+            resources.ApplyResources(this.nfiguracjaToolStripMenuItem, "nfiguracjaToolStripMenuItem");
+            this.nfiguracjaToolStripMenuItem.Click += new System.EventHandler(this.nfiguracjaToolStripMenuItem_Click);
+            // 
             // pictureBoxPolaczenie
             // 
             this.pictureBoxPolaczenie.BackColor = System.Drawing.Color.Red;
@@ -450,12 +456,6 @@ namespace SystemRFID
             // 
             resources.ApplyResources(this.labelRegulacjaMocy, "labelRegulacjaMocy");
             this.labelRegulacjaMocy.Name = "labelRegulacjaMocy";
-            // 
-            // nfiguracjaToolStripMenuItem
-            // 
-            this.nfiguracjaToolStripMenuItem.Name = "nfiguracjaToolStripMenuItem";
-            resources.ApplyResources(this.nfiguracjaToolStripMenuItem, "nfiguracjaToolStripMenuItem");
-            this.nfiguracjaToolStripMenuItem.Click += new System.EventHandler(this.nfiguracjaToolStripMenuItem_Click);
             // 
             // MainForm
             // 

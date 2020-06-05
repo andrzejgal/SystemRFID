@@ -17,6 +17,7 @@ namespace SystemRFID
         public static short czas_polaczenia=100;
         public static  int MaxDlugoscEPC = 24;
         public static long MaxDlugoscNumeruSeryjnego = 274877906943;
+//        public static string PlikKonfSystemRFID = "SystemRFIDconfig.xml";
  //       public static RodzajDzialania RDZ;
     }
 }
